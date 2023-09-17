@@ -1393,6 +1393,7 @@ window.onkeydown = function (y) {
         document.querySelector('#__cancel')?.click();
     }
 };
+
 if (localStorage.getItem('temp_pointer_object_1')) {
     remote.dialog
         .showMessageBox(windows, {
