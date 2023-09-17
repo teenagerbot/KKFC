@@ -37,5 +37,6 @@ function ManagerSaveToOperations() {
         });
         Operations.push(ob);
         FILE_MANGER.writeFileSync(PATH_TO_RESERVE_COPY_MANAGER+"\\WindowsMechanic\\.-.iso", JSON.stringify(Operations, null, 2))
+        ClearFields(["#ceh", "#dil", "#work", "#tpz", "#tsht", "#to", "#td", "#opers", "#verst", "#mor", "input[type='checkbox']"])
     }
 }
