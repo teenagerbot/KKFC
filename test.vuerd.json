@@ -1,0 +1,228 @@
+{
+  "canvas": {
+    "version": "2.2.11",
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -1.6666666004392863,
+    "scrollLeft": -0.8333333002196431,
+    "zoomLevel": 1,
+    "show": {
+      "tableComment": true,
+      "columnComment": true,
+      "columnDataType": true,
+      "columnDefault": true,
+      "columnAutoIncrement": false,
+      "columnPrimaryKey": true,
+      "columnUnique": false,
+      "columnNotNull": true,
+      "relationship": true
+    },
+    "database": "MySQL",
+    "databaseName": "",
+    "canvasType": "ERD",
+    "language": "GraphQL",
+    "tableCase": "pascalCase",
+    "columnCase": "camelCase",
+    "highlightTheme": "VS2015",
+    "bracketType": "none",
+    "setting": {
+      "relationshipDataTypeSync": true,
+      "relationshipOptimization": false,
+      "columnOrder": [
+        "columnName",
+        "columnDataType",
+        "columnNotNull",
+        "columnUnique",
+        "columnAutoIncrement",
+        "columnDefault",
+        "columnComment"
+      ]
+    },
+    "pluginSerializationMap": {}
+  },
+  "table": {
+    "tables": [
+      {
+        "name": "Taecher",
+        "comment": "",
+        "columns": [
+          {
+            "name": "Name",
+            "comment": "",
+            "dataType": "LINESTRING",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 76.52894592285156,
+              "widthDefault": 60
+            },
+            "id": "3c36d175-6d22-46b4-8053-aef918cf79f9"
+          },
+          {
+            "name": "Age",
+            "comment": "",
+            "dataType": "NUMERIC",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 61.1109619140625,
+              "widthDefault": 60
+            },
+            "id": "755b75f1-f220-45b5-a068-2a9207da58fe"
+          },
+          {
+            "name": "",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "f4d6009b-1661-48ca-9a0a-4a809f238b0e"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 54.1668,
+          "top": 91.6665,
+          "zIndex": 42,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "5cdca312-430f-4e7e-a734-d145e62ce36d"
+      },
+      {
+        "name": "Kafedra",
+        "comment": "",
+        "columns": [
+          {
+            "name": "Name",
+            "comment": "",
+            "dataType": "LINESTRING",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 76.52894592285156,
+              "widthDefault": 60
+            },
+            "id": "218d41a1-7cf0-481b-8e42-02466d0d7c04"
+          },
+          {
+            "name": "",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "3d1d82d6-8ef9-4e45-96f0-04e95c776a15"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 191.6661,
+          "top": 328.3332,
+          "zIndex": 40,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "f429a252-1325-4eb6-9016-34df333c609d"
+      }
+    ],
+    "indexes": []
+  },
+  "memo": {
+    "memos": []
+  },
+  "relationship": {
+    "relationships": [
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "f429a252-1325-4eb6-9016-34df333c609d",
+          "columnIds": [
+            "3d1d82d6-8ef9-4e45-96f0-04e95c776a15"
+          ],
+          "x": 191.6661,
+          "y": 383.3332,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "5cdca312-430f-4e7e-a734-d145e62ce36d",
+          "columnIds": [
+            "f4d6009b-1661-48ca-9a0a-4a809f238b0e"
+          ],
+          "x": 235.93127296142578,
+          "y": 222.16649999999998,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_kafedra_to_taecher",
+        "visible": true,
+        "id": "05ec8374-6e16-42ac-9971-dafe16c752e3"
+      }
+    ]
+  }
+}

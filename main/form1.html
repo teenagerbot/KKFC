@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Інформація про організацію</title>
+  <link rel="stylesheet" href="../STYLES/FORM1/form1.css">
+  <script src="../MODULES/@System/@Production/@Version/@ver.js"></script>
+  <script src="../MODULES/@System/@Errors/@err.mngr.js"></script>
+</head>
+
+<body>
+  <nav id="wins">
+    <div class="appicon">
+      <img src="../icon.ico" class="icon">
+      <span>Інформація про організацію</span>
+    </div>
+    <img src="../imgs/collapse.png" id="coll">
+    <img src="../imgs/minimize.png" id="min" class="win">
+    <img src="../imgs/close.png" id="clo">
+  </nav>
+  <h1>Інформація про організацію</h1>
+  <h2>Заповніть наступну інформацію:</h2>
+  <div class="form">
+    <label for="__ystanova">Назва установи</label>
+    <input id="__ystanova"><br>
+    <fieldset>
+      <legend>Особа що затверджує</legend>
+      <label for="__posada">Посада</label>
+      <input id="__posada" list="__posada1"><br>
+      <label for="__PIB">ПІБ</label>
+      <input id="__PIB" list="__PIB1"><br>
+      <label for="__date">Дата затвердження</label>
+      <input id="__date" type="date"><br>
+    </fieldset>
+    <fieldset>
+      <legend>Особа що перевіряє(керівник)</legend>
+      <label for="_PIB">ПІБ</label>
+      <input id="_PIB" list="_PIB1"><br>
+      <label for="_date">Дата затвердження</label>
+      <input id="_date" type="date"><br>
+    </fieldset>
+    <fieldset>
+      <legend>Особа що розробила</legend>
+      <label for="_posada">Посада</label>
+      <input id="_posada"><br>
+      <label for="PIB">ПІБ</label>
+      <input id="PIB"><br>
+      <label for="date">Дата розробки</label>
+      <input id="date" type="date"><br>
+    </fieldset>
+    <fieldset>
+      <legend>Особа що проводить нормоконтроль</legend>
+      <label for="pib">ПІБ</label>
+      <input id="pib" list="pib1"><br>
+      <label for="date_dev">Дата</label>
+      <input id="date_dev" type="date"><br>
+    </fieldset>
+  </div>
+  <div class="nav">
+    <button id="__next">
+      <img src="../imgs/arrow.png" class="img" id="__next">
+    </button>
+  </div>
+  <datalist id="__posada1"></datalist>
+  <datalist id="__PIB1"></datalist>
+  <datalist id="_PIB1"></datalist>
+  <datalist id="pib1"></datalist>
+  <script src="../SCRIPTS/DB/Connector.js"></script>
+  <script src="../SCRIPTS/DB/Query.js"></script>
+  <script src="../MODULES/@System/@Buttons/@_button.js"></script>
+  <script src="../MODULES/@System/@Clear/clear.js"></script>
+  <script src="../MODULES/@System/@@_clearer/@@_6.js"></script>
+  <script src="../SCRIPTS/FORM1/form1.js"></script>
+</body>
+
+</html>

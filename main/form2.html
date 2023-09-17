@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Інформація про деталь</title>
+  <link rel="stylesheet" href="../STYLES/FORM2/style.css">
+  <script src="../MODULES/@System/@Production/@Version/@ver.js"></script>
+  <script src="../MODULES/@System/@Errors/@err.mngr.js"></script>
+</head>
+
+<body>
+  <!-- <div class="imgso"><img src="../logo.svg" alt="logo"></div> -->
+  <nav id="wins">
+    <div class="appicon">
+      <img src="../icon.ico" class="icon">
+      <span>Інформація про деталь</span>
+    </div>
+    <img src="../imgs/collapse.png" id="coll">
+    <img src="../imgs/minimize.png" id="min" class="win">
+    <img src="../imgs/close.png" id="clo">
+  </nav>
+  <nav>
+    <!-- <button id="addr">
+      <img src="../imgs/add.png" id="addr" title="Додати рядок">
+    </button> -->
+    <button id="next">
+      <img src="../imgs/arrow.png" class="img" id="next">
+    </button>
+    <button id="prev">
+      <img src="../imgs/arrow.png" class="prev" id="prev">
+    </button>
+  </nav>
+  <h1>Інформація про деталь</h1>
+  <table>
+    <tr>
+      <th>Назва деталі</th>
+      <th>Матеріал</th>
+      <th>Маса деталі, кг</th>
+      <th>Тип заготівки</th>
+      <th>Маса заготівки</th>
+      <th>Розмір заготівки B, мм</th>
+      <th>Розмір заготівки H, мм</th>
+      <th>Кількість</th>
+    </tr>
+    <tr>
+      <td><input></td>
+      <td><input class="material"></td>
+      <td><input></td>
+      <td><input list="list"></td>
+      <td><input></td>
+      <td><input></td>
+      <td><input></td>
+      <td><input></td>
+      <!-- <td class="rem"><img src="../imgs/trash.png"></td> -->
+    </tr>
+  </table>
+  <div class="lists">
+    <datalist id="list"></datalist>
+  </div>
+  <div class="menu"></div>
+  <script src="../MODULES/contextmenu.js"></script>
+  <script src="../MODULES/form2/MODULES.js"></script>
+  <script src="../MODULES/form2/loadTABLE11.js"></script>
+  <script src="../MODULES/form2/saver.js"></script>
+  <script src="../MODULES/@System/@Buttons/@_button.js"></script>
+  <script src="../MODULES/@System/@Clear/clear.js"></script>
+  <script src="../SCRIPTS/FORM2/script.js"></script>
+</body>
+
+</html>
+<!-- і все таки треба щоб ви пояснили в екселі про 2 форму те що там з категоріями та назвами, бо мені ще здається я щось не
+так таблицю заповнив -->

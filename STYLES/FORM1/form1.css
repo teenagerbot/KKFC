@@ -1,0 +1,139 @@
+body {
+  text-align: center;
+  margin: 0px;
+  background: #b2ffb2ad;
+}
+
+fieldset {
+  width: 70%;
+  display: inline-block;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-left: none;
+  border-right: none;
+  margin-top: 20px;
+}
+
+img#__next {
+  width: 43px;
+}
+
+legend {
+  font-size: 30px;
+}
+
+input#__posada {
+  margin-bottom: 20px;
+}
+
+input#__PIB {
+  margin-bottom: 20px;
+}
+
+input {
+  font-size: 25px;
+}
+
+.nav {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+input {
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  transition: .2s linear;
+  text-align: center;
+}
+
+.form::-webkit-scrollbar {
+  display: none;
+}
+
+.form {
+  width: 100%;
+  display: inline-block;
+  height: 72vh;
+  overflow-y: scroll;
+}
+
+input:focus {
+  border-color: #0000ff;
+}
+
+input {
+  background: transparent;
+}
+
+button#__next {
+  font-size: 25px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+img#__next {
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px;
+}
+
+img#prev:hover,
+img#__next:hover {
+  box-shadow: 0px 0px 10px lime;
+}
+
+span {
+  position: relative;
+  top: -5px;
+}
+
+.win {
+  opacity: 0.4;
+  pointer-events: none;
+  app-region: drag !important;
+}
+
+nav#wins img {
+  width: 20px;
+  user-select: none;
+  app-region: no-drag;
+  cursor: pointer;
+}
+
+
+nav#wins {
+  text-align: right;
+  padding-top: 3px;
+  padding-right: 3px;
+  background: #92e992;
+  app-region: drag;
+  position: fixed;
+  z-index: 500;
+  box-shadow: 0px 0px 10px;
+  width: 99%;
+  top: 0px;
+}
+
+body {
+  margin: 0px;
+}
+
+img#clo {
+  margin-left: 5px;
+}
+
+.appicon {
+  position: absolute;
+  left: 5px;
+}
+
+iframe {
+  position: absolute;
+  bottom: 0px;
+  width: fit-content;
+  left: 50%;
+  transform: translate(-50%);
+}

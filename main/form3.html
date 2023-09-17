@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Переходи</title>
+  <link rel="stylesheet" href="../STYLES/FORM3/style.css">
+  <link rel="stylesheet" href="../STYLES/Dialog/Dialog.css">
+  <script src="../MODULES/@System/@Production/@Version/@ver.js"></script>
+  <script src="../MODULES/@System/@Errors/@err.mngr.js"></script>
+</head>
+
+<body>
+  <nav id="wins">
+    <div class="appicon">
+      <img src="../icon.ico" class="icon">
+      <span>Розробка деталі</span>
+    </div>
+    <img src="../imgs/collapse.png" id="coll">
+    <img src="../imgs/minimize.png" id="min" class="win">
+    <img src="../imgs/close.png" id="clo">
+  </nav>
+  <screen_menu>
+    <h3>Операції:</h3>
+  </screen_menu>
+  <img src="../imgs/menu.png" class="menu_img">
+  <button id="prev">
+    <img src="../imgs/arrow.png" class="prev" id="prev">
+  </button>
+  <window_screen></window_screen>
+  <h1>Операція <d>1</d>
+  </h1>
+  <div class="tt">
+    <div class="fy">
+      <div class="one">
+        <div>
+          <n>№ операції: </n><input disabled value="5">
+        </div>
+        <div>
+          <label class="ceh" for="ceh">Цех</label>
+          <input id="ceh"><br>
+        </div>
+        <div><label class="dil" for="dil">Дільниця</label>
+          <input id="dil">
+        </div>
+        <div>
+          <label class="work" for="work">Робоче місце</label>
+          <input id="work">
+        </div>
+      </div>
+      <div class="two">
+        <div>
+          <label class="ceh" for="tpz">T<sub>пз</sub></label>
+          <input id="tpz" type="number" placeholder="час підготовчо-заключний">
+        </div>
+        <div>
+          <label class="ceh" for="tsht">T<sub>шт</sub></label>
+          <input id="tsht" type="number" placeholder="час штучний">
+        </div>
+        <div>
+          <label class="ceh" for="to">T<sub>о</sub> </label>
+          <input id="to" type="number" placeholder="час основний">
+        </div>
+        <div>
+          <label class="ceh" for="td">T<sub>д</sub> </label>
+          <input id="td" type="number" placeholder="час допоміжний">
+        </div>
+      </div>
+      <div class="three">
+        <div>
+          <label for="opers">Назва операції:</label>
+          <select name="opers" id="opers">
+            <option value="Оберіть" selected>Оберіть</option>
+          </select>
+        </div>
+        <div>
+          <label for="verst">Верстат:</label>
+          <select name="verst" id="verst"></select>
+        </div>
+        <div>
+          <label for="mor">МОР:</label>
+          <select name="mor" id="mor"></select>
+        </div>
+      </div>
+    </div>
+    <div class="fx">
+      <details open>
+        <summary><label for="device">Пристрій:</label></summary>
+        <div id="device"></div>
+      </details>
+      <!-- <select name="device" id="device"></select> -->
+
+
+    </div>
+    <button id="__ADD" class="no">Додати перехід</button>
+  </div>
+  <div class="table no">
+    <table>
+      <tr>
+        <th>№ дії</th>
+        <th>Назва дії</th>
+        <th>ПІ</th>
+        <th>D або B</th>
+        <th>L</th>
+        <th>t</th>
+        <th>i</th>
+        <th>S</th>
+        <th>n</th>
+        <th>V</th>
+
+        <th>H</th>
+        <th>Y</th>
+        <th>X</th>
+        <th>E</th>
+        <th>F</th>
+        <th>h</th>
+        <th>R</th>
+        <th>d</th>
+        <th>Z</th>
+      </tr>
+      <!-- <tr>
+        <td>1</td>
+        <td contenteditable="true">a</td>
+        <td contenteditable="true">12</td>
+        <td contenteditable="true">d</td>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">5</td>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">4</td>
+        <td>DELETE</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td contenteditable="true">b</td>
+        <td contenteditable="true">13</td>
+        <td contenteditable="true">d</td>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">7</td>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">3</td>
+        <td>DELETE</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td contenteditable="true">c</td>
+        <td contenteditable="true">14</td>
+        <td contenteditable="true">b</td>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">7</td>
+        <td contenteditable="true">6</td>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">9</td>
+        <td contenteditable="true">2</td>
+        <td>DELETE</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td contenteditable="true">d</td>
+        <td contenteditable="true">15</td>
+        <td contenteditable="true">d</td>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">7</td>
+        <td contenteditable="true">1</td>
+        <td>DELETE</td>
+      </tr> -->
+      <!-- <tr>
+        <td>1</td>
+        <td contenteditable="true" namer="Назва дії" window="wind">Контролювати розміри згідно кресленика та ТУ</td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td class="delete"><img src="../imgs/cross.png" class="rem_transition"></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td contenteditable="true" namer="Інструмент" class="instrument">штіекгьуте 4</td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td contenteditable="true" namer="Вимірювальний інструмент" class="vim">інстр 2</td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" tar="ПИ">1</td>
+        <td contenteditable="true" tar="D,B">2</td>
+        <td contenteditable="true" tar="L">3</td>
+        <td contenteditable="true" tar="t">4</td>
+        <td contenteditable="true" tar="i">5</td>
+        <td contenteditable="true" tar="S">6</td>
+        <td contenteditable="true" tar="n">7</td>
+        <td contenteditable="true" tar="V">8</td>
+        <td contenteditable="true" tar="H">9</td>
+        <td contenteditable="true" tar="Y">10</td>
+        <td contenteditable="true" tar="X">11</td>
+        <td contenteditable="true" tar="E">12</td>
+        <td contenteditable="true" tar="F">13</td>
+        <td contenteditable="true" tar="h">14</td>
+        <td contenteditable="true" tar="R">15</td>
+        <td contenteditable="true" tar="d">16</td>
+        <td contenteditable="true" tar="Z">17</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td contenteditable="true" namer="Назва дії" window="wind">Підготовити та надати протокол вимірювань</td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td class="delete"><img src="../imgs/cross.png" class="rem_transition"></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td contenteditable="true" namer="Інструмент" class="instrument">штіекгьуте 4</td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td contenteditable="false" namer="Вимірювальний інструмент" class="vim">шнстр 3</td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+        <td contenteditable="true" class="hidene"></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td contenteditable="true" namer="" class="hidene"></td>
+        <td contenteditable="true" tar="ПИ">a</td>
+        <td contenteditable="true" tar="D,B">b</td>
+        <td contenteditable="true" tar="L">c</td>
+        <td contenteditable="true" tar="t">d</td>
+        <td contenteditable="true" tar="i">e</td>
+        <td contenteditable="true" tar="S">f</td>
+        <td contenteditable="true" tar="n">g</td>
+        <td contenteditable="true" tar="V">h</td>
+        <td contenteditable="true" tar="H">j</td>
+        <td contenteditable="true" tar="Y">k</td>
+        <td contenteditable="true" tar="X">l</td>
+        <td contenteditable="true" tar="E">m</td>
+        <td contenteditable="true" tar="F">n</td>
+        <td contenteditable="true" tar="h">o</td>
+        <td contenteditable="true" tar="R">p</td>
+        <td contenteditable="true" tar="d">r</td>
+        <td contenteditable="true" tar="Z">s</td>
+        </tr> -->
+    </table>
+  </div>
+  <div class="menu"></div>
+  <div class="me_o"></div>
+  <button id="__prev">Попередня операція</button>
+  <button id="__next" class="no">Наступна операція</button>
+  <button id="__save">Завершити</button>
+  <script src="../MODULES/@System/@@@@@/@__@.js"></script>
+  <script src="../MODULES/@System/@@@@@/@__reserve_server.js"></script>
+  <script src="../MODULES/ERRORS.js"></script>
+  <script src="../MODULES/SUCCESS.js"></script>
+  <script src="../SCRIPTS/FORM3/Table.js"></script>
+  <script src="../MODULES/highlite.js"></script>
+  <script src="../MODULES/EXPORTER/Exporter.js"></script>
+  <script src="../MODULES/DOMserver.js"></script>
+  <script src="../MODULES/@System/@Buttons/@_button.js"></script>
+  <script src="../MODULES/@System/@Dialog/dialog.js"></script>
+  <script src="../MODULES/@System/@Loader/@loader.js"></script>
+  <script src="../SCRIPTS/FORM3/script.js"></script>
+</body>
+
+</html>
