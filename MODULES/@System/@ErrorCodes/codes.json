@@ -1,0 +1,8 @@
+{
+  "0x00000001": "Error scripting",
+  "0x00000002": "Error parsing",
+  "0x00000003": "Error launching",
+  "0x00000004": "Error preview",
+  "0x20030440": "File \\WindowsMechanic\\.-.iso not found in system",
+  "0x23938003": "Folder \\WindowsMechanic not found in system"
+}

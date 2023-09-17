@@ -3,6 +3,7 @@ const path = require('path');
 let y = 0;
 const LoaderX = new Loader();
 const FILEserver = new ReserveServer();
+const PATH_TO_RESERVE_COPY = process.env.ALLUSERSPROFILE;
 LoaderX.Loader();
 const windows = remote.getCurrentWindow();
 console.log(remote.screen.getPrimaryDisplay());
@@ -917,118 +918,13 @@ function Save() {
 }
 document.querySelector('#__next').onclick = () => {
   highlight();
-  //if (!check()) return;
-  //FIXME -
-  // let content = JSON.parse(fs.readFileSync(`resources/DataBase/RESULT.json`, "utf-8"));
-  let content = {
-    form3_operations: {},
-  };
-  document.querySelector('#__prev').style.pointerEvents = 'auto';
-  document.querySelector('#__prev').style.opacity = 1;
-  if (
-    localStorage.getItem(
-      `temp_pointer_object_${Number(localStorage.getItem('temp_pointer_object')) + 1
-      }`
-    )
-  ) {
-    //--------------SAVING CHANGES---------START------------
-    const obDevices = [];
-    Array.from(
-      document.querySelectorAll("input[type='checkbox']:checked")
-    ).forEach((device) => {
-      obDevices.push(String(device.getAttribute('device')));
-    });
-    let ob = {
-      'номер операції': String(document.querySelector('input').value),
-      'назва операції': String(document.querySelector('#opers').value),
-      верстат: String(document.querySelector('#verst').value),
-      МОР: String(document.querySelector('#mor').value),
-      Пристрої: obDevices,
-      Цех: String(document.querySelector('#ceh').value),
-      Дільниця: String(document.querySelector('#dil').value),
-      'Робоче місце': String(document.querySelector('#work').value),
-      'Штучний час': String(document.querySelector('#tsht').value),
-      'Підготовчо-заключний час': String(document.querySelector('#tpz').value),
-      'Допоміжний час': String(document.querySelector('#td').value),
-      'Основний час': String(document.querySelector('#to').value),
-    };
-
-    ob['Переходи'] = readFromTable();
-    clearInputs();
-    content['form3_operations'][document.querySelector('body > h1').innerText] =
-      ob;
-    localStorage.setItem(
-      `temp_pointer_object_${Number(
-        localStorage.getItem('temp_pointer_object')
-      )}`,
-      JSON.stringify(content)
-    );
-    //--------------SAVING CHANGES---------END------------
-
-    content = JSON.parse(
-      localStorage.getItem(
-        `temp_pointer_object_${Number(localStorage.getItem('temp_pointer_object')) + 1
-        }`
-      )
-    );
-    localStorage.setItem(
-      `temp_pointer_object`,
-      Number(localStorage.getItem('temp_pointer_object')) + 1
-    );
-    let num = Number(document.querySelector('h1 d').innerText);
-    document.querySelector('h1 d').innerText = ++num;
-    readerJSON(content, 'prev');
-    console.log(content);
+  if (!fs.existsSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic")) {
+    fs.mkdirSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic");
+    fs.writeFileSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso", "[]");
+  } else if (!fs.existsSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso")) {
+    fs.writeFileSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso", "[]");
   } else {
-    const obDevices = [];
-    Array.from(
-      document.querySelectorAll("input[type='checkbox']:checked")
-    ).forEach((device) => {
-      obDevices.push(String(device.getAttribute('device')));
-    });
-    // let content = JSON.parse(fs.readFileSync(`resources/DataBase/RESULT.json`, "utf-8"));
-    let ob = {
-      'номер операції': String(document.querySelector('input').value),
-      'назва операції': String(document.querySelector('#opers').value),
-      'верстат': String(document.querySelector('#verst').value),
-      'МОР': String(document.querySelector('#mor').value),
-      'Пристрої': obDevices,
-      'Цех': String(document.querySelector('#ceh').value),
-      'Дільниця': String(document.querySelector('#dil').value),
-      'Робоче місце': String(document.querySelector('#work').value),
-      'Штучний час': String(document.querySelector('#tsht').value),
-      'Підготовчо-заключний час': String(document.querySelector('#tpz').value),
-      'Допоміжний час': String(document.querySelector('#td').value),
-      'Основний час': String(document.querySelector('#to').value),
-    };
-    clearInputs();
-    ob['Переходи'] = readFromTable();
-    content['form3_operations'][document.querySelector('h1').innerText] = ob;
-    localStorage.setItem(
-      `temp_pointer_object_${Number(
-        localStorage.getItem('temp_pointer_object')
-      )}`,
-      JSON.stringify(content)
-    );
-    localStorage.setItem(
-      'temp_pointer_object',
-      Number(localStorage.getItem('temp_pointer_object')) + 1
-    );
-    let num = Number(document.querySelector('h1 d').innerText);
-    document.querySelector('h1 d').innerText = ++num;
-    document.querySelector('input').value =
-      Number(document.querySelector('h1 d').innerText) * 5;
-    let r = Array.from(document.querySelectorAll('table tr'));
-    r.shift();
-    r.forEach((t) => {
-      t.remove();
-    });
-    document.querySelector('table').innerHTML += ``;
-    OPERA = 0;
-    document.querySelector('#__ADD').classList.add('no');
-    document.querySelector('.table').classList.add('no');
-    document.querySelector('#__next').classList.add('no');
-    Save()
+    ManagerSaveToOperations()
   }
 };
 document.querySelector('#__prev').style.pointerEvents = 'none';

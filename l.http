@@ -1,0 +1,5 @@
+# curl -i http://httpbin.org/ip
+GET https://google.com
+
+###
+
