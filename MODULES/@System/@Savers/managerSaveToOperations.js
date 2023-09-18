@@ -17,6 +17,7 @@ function ManagerSaveToOperations() {
             obDevices.push(String(device.getAttribute('device')));
         });
         let ob = {
+
             'номер операції': String(document.querySelector('input').value),
             'назва операції': String(document.querySelector('#opers').value),
             'верстат': String(document.querySelector('#verst').value),

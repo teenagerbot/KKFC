@@ -20,4 +20,7 @@ function ClearFields(array = []) {
     })
     Checker();
     ClearTable();
+    let num = Number(document.querySelector('h1 d').innerText);
+    document.querySelector('h1 d').innerText = ++num;
+    document.querySelector('input').value = Number(document.querySelector('h1 d').innerText) * 5;
 }

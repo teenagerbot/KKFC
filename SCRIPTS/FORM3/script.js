@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const ExtraFS = require("fs-extra");
 let y = 0;
 const LoaderX = new Loader();
 const FILEserver = new ReserveServer();
@@ -8,6 +9,10 @@ LoaderX.Loader();
 const windows = remote.getCurrentWindow();
 console.log(remote.screen.getPrimaryDisplay());
 const OriginSize = remote.screen.getPrimaryDisplay().size;
+let OperationsLIST;
+if (fs.existsSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso")) {
+  OperationsLIST = JSON.parse(fs.readFileSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso", "utf-8"));
+}
 windows.on('resize', () => {
   const { width, height } = windows.getBounds();
   if (width < OriginSize.width || height < OriginSize.height) {
@@ -201,10 +206,6 @@ obMOR.forEach((oper) => {
   document.querySelector('#mor').appendChild(option);
 });
 obDEV.forEach((oper) => {
-  // const option = document.createElement("option");
-  // option.setAttribute("value", oper["Ім'я пристрою"]);
-  // option.innerHTML = oper["Ім'я пристрою"];
-  // document.querySelector("#device").appendChild(option)
   const DIV = document.createElement('div');
   DIV.className = 'lbl';
   const LABEL = document.createElement('label');
@@ -267,14 +268,6 @@ document.body.oncontextmenu = (r) => {
     const window_alert = document.createElement('div');
     window_alert.id = '__win_alert';
     document.querySelector('window_screen').appendChild(window_alert);
-    // const objOpers = [];
-    // obOPER.forEach(obj => {
-    //   objOpers.push({
-    //     nameOper: obj["Назва операції"],
-    //     namePere: obj["Назва переходу"]
-    //   });
-    // })
-    // console.log(objOpers)
     const operMap = new Map();
     obOPER.forEach((obj) => {
       const nameOper = obj['Назва операції'];
@@ -514,26 +507,6 @@ function rerender() {
     td.innerText = y++;
   });
 }
-document.querySelector('#__prev').onclick = function () {
-  if (Number(localStorage.getItem('temp_pointer_object')) - 1 == 1) {
-    this.style.pointerEvents = 'none';
-    this.style.opacity = 0.4;
-  }
-  let content = localStorage.getItem(
-    `temp_pointer_object_${Number(localStorage.getItem('temp_pointer_object')) - 1
-    }`
-  );
-  localStorage.setItem(
-    `temp_pointer_object`,
-    Number(localStorage.getItem('temp_pointer_object')) - 1
-  );
-  let num = Number(document.querySelector('h1 d').innerText);
-  document.querySelector('h1 d').innerText = --num;
-  readerJSON(JSON.parse(content), 'prev');
-  document.querySelector('#__ADD').classList.remove('no');
-  document.querySelector('.table').classList.remove('no');
-  document.querySelector('#__next').classList.remove('no');
-};
 //SECTION - Зчитування всіх людей
 //*Зчитування всіх людей
 const Persons = Object.keys(
@@ -680,7 +653,7 @@ function readerJSON(object, napryam = 'next') {
   highlight();
 }
 function readerJSONStatic(object) {
-  let cont = object['form3_operations'][document.querySelector('h1').innerText];
+  let cont = object;
   document.querySelector('#mor').value = cont['МОР'];
   document.querySelector('#device').value = cont['Пристрій'];
   setTimeout(() => {
@@ -832,10 +805,16 @@ function readerJSONStatic(object) {
   highlight();
 }
 let contentOperations;
-if (localStorage.getItem('temp_pointer_object_1')) {
-  contentOperations = localStorage.getItem(`temp_pointer_object_1`);
-  readerJSONStatic(JSON.parse(contentOperations));
+// if (localStorage.getItem('temp_pointer_object_1')) {
+//   contentOperations = localStorage.getItem(`temp_pointer_object_1`);
+//   //readerJSONStatic(JSON.parse(contentOperations));
+// } else {
+//   LoaderX.Destroy();
+// }
+if (fs.existsSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso")) {
+  readerJSONStatic(OperationsLIST[0]);
 } else {
+  ExtraFS.outputFileSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso", "[]");
   LoaderX.Destroy();
 }
 function check() {
@@ -1276,7 +1255,7 @@ setInterval(() => {
 
 DOMserver('h1', (server) => {
   if (server.targetElement.tagName == 'D') {
-    document.querySelector('p.current').classList.remove('current');
+    document.querySelector('p.current')?.classList.remove('current');
     document
       .querySelector(`p[item='Операція ${server.targetElement.innerText}']`)
       ?.classList.add('current');
