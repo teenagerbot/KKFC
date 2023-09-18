@@ -16,8 +16,8 @@ function ManagerSaveToOperations() {
         ).forEach((device) => {
             obDevices.push(String(device.getAttribute('device')));
         });
+        let STEP_INDEX = 0;
         let ob = {
-
             'номер операції': String(document.querySelector('input').value),
             'назва операції': String(document.querySelector('#opers').value),
             'верстат': String(document.querySelector('#verst').value),
@@ -36,8 +36,24 @@ function ManagerSaveToOperations() {
         Array.from(document.querySelectorAll('p.menu_item')).forEach((item) => {
             items.push(String(item.getAttribute('item')));
         });
-        Operations.push(ob);
+        //Виправити баг: не зберігає наступні записи
+        if (Operations.length === 0) {
+            Operations.push(ob);
+        } else {
+            for (let operation_index = 0; operation_index < Operations.length; operation_index++) {
+                if (Operations[operation_index]["номер операції"] === String(document.querySelector('input').value)) {
+                    Operations.splice(operation_index, 1, ob);
+                    STEP_INDEX = operation_index;
+                    break;
+                }
+            }
+        }
         FILE_MANGER.writeFileSync(PATH_TO_RESERVE_COPY_MANAGER+"\\WindowsMechanic\\.-.iso", JSON.stringify(Operations, null, 2))
         ClearFields(["#ceh", "#dil", "#work", "#tpz", "#tsht", "#to", "#td", "#opers", "#verst", "#mor", "input[type='checkbox']"])
+        //Next Operation
+        let temp = ++STEP_INDEX;
+        if (Operations[temp] !== undefined) {
+            readerJSON(Operations[temp], "next");
+        }
     }
 }
