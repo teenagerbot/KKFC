@@ -1,15 +1,23 @@
 function ClearFields(array = []) {
     array.forEach(field => {
-        if (document.querySelector(field) && document.querySelector(field).tagName === "input".toUpperCase()) {
-            document.querySelector(field).value = "";
+        if (document.querySelector(field) && document.querySelector(field).tagName === "input".toUpperCase() && document.querySelector(field).type !== "checkbox") {
+            document.querySelectorAll(field).forEach(elem => {
+                elem.value = "";
+            })
         } else if (document.querySelector(field) && document.querySelector(field).getAttribute("contenteditable") === "true") {
-            document.querySelector(field).innerText = "";
+            document.querySelectorAll(field).forEach(elem => {
+                elem.innerText = "";
+            })
         } else if (document.querySelector(field) && document.querySelector(field).tagName === "select".toUpperCase()) {
-            document.querySelector(field).value = "";
+            document.querySelectorAll(field).forEach(elem => {
+                elem.value = "";
+            })
         } else if (document.querySelector(field) && document.querySelector(field).type === "checkbox") {
-            //!FIXME
-            console.log(3)
-            document.querySelector(field).checked = false;
+            document.querySelectorAll(field).forEach(elem => {
+                elem.checked = false;
+            })
         }
     })
+    Checker();
+    ClearTable();
 }
