@@ -32,7 +32,7 @@ function readerJSON(object, napryam = 'next') {
         const TR1 = document.createElement('tr');
         const TR2 = document.createElement('tr');
         const TR3 = document.createElement('tr');
-        TR.innerHTML = /*html*/ `<td>${napryam == 'prev' ? ++OPERA : --OPERA}</td>
+        TR.innerHTML = /*html*/ `<td>${++OPERA}</td>
                     <td contenteditable="true" namer="Назва дії" window="wind">${cont.Переходи[perehid]["Перехід"]}</td>
                     <td contenteditable="true" class="hidene"></td>
                     <td contenteditable="true" class="hidene"></td>
@@ -52,7 +52,7 @@ function readerJSON(object, napryam = 'next') {
                     <td contenteditable="true" class="hidene"></td>
                     <td contenteditable="true" class="hidene"></td>
                     <td class="delete"><img src="../imgs/delete.png" class="rem_transition"></td>`;
-        TR1.innerHTML = /*html*/ `<td>${napryam == 'prev' ? ++OPERA : --OPERA}</td>
+        TR1.innerHTML = /*html*/ `<td>${++OPERA}</td>
                     <td contenteditable="true" namer="Інструмент" class="instrument">${cont.Переходи[perehid]['Інструмент']
         }</td>
                     <td contenteditable="true" class="hidene"></td>
@@ -72,7 +72,7 @@ function readerJSON(object, napryam = 'next') {
                     <td contenteditable="true" class="hidene"></td>
                     <td contenteditable="true" class="hidene"></td>
                     <td contenteditable="true" class="hidene"></td>`;
-        TR2.innerHTML = /*html*/ `<td>${napryam == 'prev' ? ++OPERA : --OPERA}</td>
+        TR2.innerHTML = /*html*/ `<td>${++OPERA}</td>
                     <td contenteditable="true" namer="Вимірювальний інструмент" class="vim">${cont.Переходи[perehid]['Вимірювальний інструмент']
         }</td>
                     <td contenteditable="true" class="hidene"></td>
@@ -92,7 +92,7 @@ function readerJSON(object, napryam = 'next') {
                     <td contenteditable="true" class="hidene"></td>
                     <td contenteditable="true" class="hidene"></td>
                     <td contenteditable="true" class="hidene"></td>`;
-        TR3.innerHTML = `<td>${napryam == 'prev' ? ++OPERA : --OPERA}</td>
+        TR3.innerHTML = `<td>${++OPERA}</td>
                     <td contenteditable="true" class="hidene"></td>
                     <td contenteditable="true" tar="ПИ">${cont.Переходи[perehid].data['ПІ']
         }</td>

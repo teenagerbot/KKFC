@@ -14,6 +14,7 @@ document.querySelector('#next').onclick = () => {
         contextIsolation: false,
         nodeIntegration: true,
         enableRemoteModule: true,
+        nodeIntegrationInWorker: true,
         webviewTag: true,
         devTools: true,
       },

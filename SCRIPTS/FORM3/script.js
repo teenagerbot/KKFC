@@ -10,8 +10,28 @@ const windows = remote.getCurrentWindow();
 console.log(remote.screen.getPrimaryDisplay());
 const OriginSize = remote.screen.getPrimaryDisplay().size;
 let OperationsLIST;
-if (fs.existsSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso")) {
-  OperationsLIST = JSON.parse(fs.readFileSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso", "utf-8"));
+let ELEMENT_index = 0;
+const WorkerOperations = new Worker("../MODULES/@System/@BackgroundWorkers/@Form3/readOperations.js");
+WorkerOperations.postMessage({
+  key: "kafedra.read.operations"
+});
+WorkerOperations.onmessage = (event) => {
+  const message = event.data;
+  if (message && message.success === true) {
+    OperationsLIST = message.operations;
+    if (fs.existsSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso")) {
+      if (OperationsLIST.length !== 0) {
+        readerJSONStatic(OperationsLIST[0]);
+      } else {
+        LoaderX.Destroy();
+      }
+    } else {
+      ExtraFS.outputFileSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso", "[]");
+      LoaderX.Destroy();
+    }
+  } else if (message.success === false) {
+    LoaderX.Destroy();
+  }
 }
 windows.on('resize', () => {
   const { width, height } = windows.getBounds();
@@ -811,16 +831,6 @@ let contentOperations;
 // } else {
 //   LoaderX.Destroy();
 // }
-if (fs.existsSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso")) {
-  if (OperationsLIST.length !== 0) {
-    readerJSONStatic(OperationsLIST[0]);
-  } else {
-    LoaderX.Destroy();
-  }
-} else {
-  ExtraFS.outputFileSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso", "[]");
-  LoaderX.Destroy();
-}
 function check() {
   return (
     document.querySelector('#ceh').value &&
@@ -831,28 +841,6 @@ function check() {
     document.querySelector('#opers').value !== 'Оберіть' &&
     document.querySelector('#verst').value
   );
-}
-function clearInputs() {
-  document.querySelector('#opers').value = '';
-  document.querySelector('#verst').value = '';
-  document.querySelector('#mor').value = '';
-  document.querySelector('#ceh').value = '';
-  document.querySelector('#dil').value = '';
-  document.querySelector('#work').value = '';
-  document.querySelector('#tsht').value = '';
-  document.querySelector('#tpz').value = '';
-  document.querySelector('#td').value = '';
-  document.querySelector('#to').value = '';
-  document.querySelector('#opers').style.background = 'pink';
-  document.querySelector('#verst').style.background = 'pink';
-  document.querySelector('#mor').style.background = 'pink';
-  document.querySelector('#ceh').style.background = 'pink';
-  document.querySelector('#dil').style.background = 'pink';
-  document.querySelector('#work').style.background = 'pink';
-  document.querySelector('#tsht').style.background = 'pink';
-  document.querySelector('#tpz').style.background = 'pink';
-  document.querySelector('#td').style.background = 'pink';
-  document.querySelector('#to').style.background = 'pink';
 }
 function Save() {
   let content = {
@@ -907,7 +895,8 @@ document.querySelector('#__next').onclick = () => {
   } else if (!fs.existsSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso")) {
     fs.writeFileSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso", "[]");
   } else {
-    ManagerSaveToOperations()
+    ELEMENT_index = moveCURSOR("forward", ELEMENT_index, OperationsLIST)
+    // ManagerSaveToOperations()
   }
 };
 document.querySelector('#__prev').style.pointerEvents = 'none';
@@ -1025,7 +1014,10 @@ instruments.forEach((ins) => {
   item.innerText = ins['Інформація'];
   document.querySelector('.menu').appendChild(item);
 });
-document.body.oninput = highlight;
+document.body.oninput = () => {
+  highlight();
+  document.querySelector("#__save_operation").classList.add("saveText");
+}
 setTimeout(() => {
   highlight();
 }, 700);
@@ -1059,58 +1051,58 @@ document.querySelector('#verst').oninput = function () {
 //     document.querySelector("#__next").classList.remove("no");
 //   }
 // }
-document.body.oninput = (j) => {
-  IS_SAVED = false;
-  if (j.target.tagName == 'INPUT') {
-    if (j.target.value == '') {
-      j.target.style.background = 'pink';
-    } else {
-      j.target.style.background = 'rgba(118, 220, 118, 0.44)';
-    }
-  } else if (
-    document.querySelector('#opers').value == 'Оберіть' &&
-    document.querySelector('#verst').value == 'Оберіть'
-  ) {
-    document.querySelector('#__ADD').classList.add('no');
-    document.querySelector('.table').classList.add('no');
-    document.querySelector('#__next').classList.add('no');
-    document.querySelector('#verst').style.background = 'pink';
-    document.querySelector('#opers').style.background = 'pink';
-  } else if (
-    document.querySelector('#opers').value != 'Оберіть' &&
-    document.querySelector('#verst').value == 'Оберіть'
-  ) {
-    document.querySelector('#__ADD').classList.add('no');
-    document.querySelector('.table').classList.add('no');
-    document.querySelector('#__next').classList.add('no');
-    document.querySelector('#verst').style.background = 'pink';
-    document.querySelector('#opers').style.background =
-      'rgba(118, 220, 118, 0.44)';
-  } else if (
-    document.querySelector('#opers').value == 'Оберіть' &&
-    document.querySelector('#verst').value != 'Оберіть'
-  ) {
-    document.querySelector('#__ADD').classList.add('no');
-    document.querySelector('.table').classList.add('no');
-    document.querySelector('#__next').classList.add('no');
-    document.querySelector('#verst').style.background =
-      'rgba(118, 220, 118, 0.44)';
-    document.querySelector('#opers').style.background = 'pink';
-  } else {
-    document.querySelector('#__ADD').classList.remove('no');
-    document.querySelector('.table').classList.remove('no');
-    document.querySelector('#__next').classList.remove('no');
-    document.querySelector('#verst').style.background =
-      'rgba(118, 220, 118, 0.44)';
-    document.querySelector('#opers').style.background =
-      'rgba(118, 220, 118, 0.44)';
-    //FIXME -
-    // document.querySelector("#__next").click();
-    // document.querySelector("h1 d").innerText = Number(document.querySelector("h1 d").innerText)-1;
-    // localStorage.setItem("temp_pointer_object", document.querySelector("h1 d").innerText);
-  }
-  Save();
-};
+// document.body.oninput = (j) => {
+//   IS_SAVED = false;
+//   if (j.target.tagName == 'INPUT') {
+//     if (j.target.value == '') {
+//       j.target.style.background = 'pink';
+//     } else {
+//       j.target.style.background = 'rgba(118, 220, 118, 0.44)';
+//     }
+//   } else if (
+//     document.querySelector('#opers').value == 'Оберіть' &&
+//     document.querySelector('#verst').value == 'Оберіть'
+//   ) {
+//     document.querySelector('#__ADD').classList.add('no');
+//     document.querySelector('.table').classList.add('no');
+//     document.querySelector('#__next').classList.add('no');
+//     document.querySelector('#verst').style.background = 'pink';
+//     document.querySelector('#opers').style.background = 'pink';
+//   } else if (
+//     document.querySelector('#opers').value != 'Оберіть' &&
+//     document.querySelector('#verst').value == 'Оберіть'
+//   ) {
+//     document.querySelector('#__ADD').classList.add('no');
+//     document.querySelector('.table').classList.add('no');
+//     document.querySelector('#__next').classList.add('no');
+//     document.querySelector('#verst').style.background = 'pink';
+//     document.querySelector('#opers').style.background =
+//       'rgba(118, 220, 118, 0.44)';
+//   } else if (
+//     document.querySelector('#opers').value == 'Оберіть' &&
+//     document.querySelector('#verst').value != 'Оберіть'
+//   ) {
+//     document.querySelector('#__ADD').classList.add('no');
+//     document.querySelector('.table').classList.add('no');
+//     document.querySelector('#__next').classList.add('no');
+//     document.querySelector('#verst').style.background =
+//       'rgba(118, 220, 118, 0.44)';
+//     document.querySelector('#opers').style.background = 'pink';
+//   } else {
+//     document.querySelector('#__ADD').classList.remove('no');
+//     document.querySelector('.table').classList.remove('no');
+//     document.querySelector('#__next').classList.remove('no');
+//     document.querySelector('#verst').style.background =
+//       'rgba(118, 220, 118, 0.44)';
+//     document.querySelector('#opers').style.background =
+//       'rgba(118, 220, 118, 0.44)';
+//     //FIXME -
+//     // document.querySelector("#__next").click();
+//     // document.querySelector("h1 d").innerText = Number(document.querySelector("h1 d").innerText)-1;
+//     // localStorage.setItem("temp_pointer_object", document.querySelector("h1 d").innerText);
+//   }
+//   Save();
+// };
 document.querySelector('#prev').onclick = () => {
   remote.dialog
     .showMessageBox({
@@ -1344,5 +1336,9 @@ document.querySelector('#mor').oninput = function () {
 };
 
 document.querySelector("#__prev").onclick = () => {
-  ManagerSaveToOperations(true);
+  ELEMENT_index = moveCURSOR("back", ELEMENT_index, OperationsLIST)
+  // ManagerSaveToOperations(true);
+}
+document.querySelector("#__save_operation").onclick = () => {
+  OperationsLIST = ManagerSaveToOperations(OperationsLIST);
 }

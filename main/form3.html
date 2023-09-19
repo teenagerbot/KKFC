@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../STYLES/Dialog/Dialog.css">
   <script src="../MODULES/@System/@Production/@Version/@ver.js"></script>
   <script src="../MODULES/@System/@Errors/@err.mngr.js"></script>
+  <link rel="stylesheet" href="../MODULES/@System/@SavedMessage/css/notifier.css">
 </head>
 
 <body>
@@ -345,13 +346,20 @@
   </div>
   <div class="menu"></div>
   <div class="me_o"></div>
-  <button id="__prev">Попередня операція</button>
-  <button id="__next" class="no">Наступна операція</button>
-  <button id="__save">Завершити</button>
+  <div class="buttons">
+    <button id="__prev">Попередня операція</button>
+    <button id="__next" class="no">Наступна операція</button>
+    <button id="__save_operation">Зберегти</button>
+    <button id="__save">Завершити</button>
+  </div>
+  <script src="../MODULES/@System/@SavedMessage/js/notifier.js"></script>
+  <script src="../MODULES/@System/@SavedMessage/message.js"></script>
+  <script src="../MODULES/@System/@@_clearer/@@_6.js"></script>
   <script src="../MODULES/@System/@Deleter/deleter_tables.js"></script>
   <script src="../MODULES/@System/@ReaderJSONTable/readerJSON.js"></script>
   <script src="../MODULES/@System/@LoadDataFromFile/loadData.js"></script>
-  <script src="../MODULES/@System/@@_clearer/@@_6.js"></script>
+  <script src="../MODULES/@System/@TableMoveCursor/moveCURSOR.js"></script>
+  <script src="../MODULES/@System/@CreateOperation/createOperation.js"></script>
   <script src="../MODULES/@System/@ClearFields/clflds.js"></script>
   <script src="../MODULES/@System/@@@@@/@__@.js"></script>
   <script src="../MODULES/@System/@@@@@/@__reserve_server.js"></script>
