@@ -36,7 +36,7 @@ function ManagerSaveToOperations() {
         Array.from(document.querySelectorAll('p.menu_item')).forEach((item) => {
             items.push(String(item.getAttribute('item')));
         });
-        //Виправити баг: не зберігає наступні записи
+        //FIXME Виправити баг: не зберігає наступні записи
         if (Operations.length === 0) {
             Operations.push(ob);
         } else {
