@@ -812,7 +812,11 @@ let contentOperations;
 //   LoaderX.Destroy();
 // }
 if (fs.existsSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso")) {
-  readerJSONStatic(OperationsLIST[0]);
+  if (OperationsLIST.length !== 0) {
+    readerJSONStatic(OperationsLIST[0]);
+  } else {
+    LoaderX.Destroy();
+  }
 } else {
   ExtraFS.outputFileSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso", "[]");
   LoaderX.Destroy();
@@ -1338,3 +1342,7 @@ document.querySelector('#mor').oninput = function () {
     this.style.background = 'rgba(118, 220, 118, 0.44)';
   }
 };
+
+document.querySelector("#__prev").onclick = () => {
+  ManagerSaveToOperations(true);
+}
