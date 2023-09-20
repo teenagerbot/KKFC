@@ -70,7 +70,7 @@ function ManagerSaveToOperations(operations = []) {
                 document.querySelector("#__save_operation").classList.remove("saveText");
             }
         }
+        document.querySelector("#__save_operation").classList.remove("saveText");
         return Operations;
-        //FILE_MANGER.writeFileSync(PATH_TO_RESERVE_COPY_MANAGER+"\\WindowsMechanic\\.-.iso", JSON.stringify(Operations, null, 2))
     }
 }

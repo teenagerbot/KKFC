@@ -823,6 +823,7 @@ function readerJSONStatic(object) {
   });
   document.querySelector('#__next').classList.remove('no');
   highlight();
+  document.querySelector("#__save_operation").classList.remove("saveText");
 }
 let contentOperations;
 // if (localStorage.getItem('temp_pointer_object_1')) {
@@ -1337,7 +1338,6 @@ document.querySelector('#mor').oninput = function () {
 
 document.querySelector("#__prev").onclick = () => {
   ELEMENT_index = moveCURSOR("back", ELEMENT_index, OperationsLIST)
-  // ManagerSaveToOperations(true);
 }
 document.querySelector("#__save_operation").onclick = () => {
   OperationsLIST = ManagerSaveToOperations(OperationsLIST);
