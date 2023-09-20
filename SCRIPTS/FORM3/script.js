@@ -20,14 +20,14 @@ WorkerOperations.onmessage = (event) => {
   const message = event.data;
   if (message && message.success === true) {
     OperationsLIST = message.operations;
-    if (fs.existsSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso")) {
+    if (fs.existsSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso")) {
       if (OperationsLIST.length !== 0) {
         readerJSONStatic(OperationsLIST[0]);
       } else {
         LoaderX.Destroy();
       }
     } else {
-      ExtraFS.outputFileSync(PATH_TO_RESERVE_COPY+"\\WindowsMechanic\\.-.iso", "[]");
+      ExtraFS.outputFileSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso", "[]");
       LoaderX.Destroy();
     }
   } else if (message.success === false) {
@@ -1349,8 +1349,19 @@ document.querySelector("#__delete_operation").onclick = () => {
           id: 'dely',
           click: () => {
             OperationsLIST.splice(ELEMENT_index, 1)
-            this.parentElement.parentElement.remove();
-            document.querySelector('window_screen').style.cssText = '';
+            WorkerOperations.postMessage({
+              key: 'kafedra.write.operations',
+              content: OperationsLIST
+            });
+            WorkerOperations.onmessage = (event) => {
+              if (event.data.success === true) {
+                TEMP_OPER = 0;
+                notifier.show('Успішно', 'данні збережені', '', '../imgs/ok.png', 0);
+                document.querySelector('#__save_operation').classList.remove('saveText');
+                this.parentElement.parentElement.remove();
+                document.querySelector('window_screen').style.cssText = '';
+              }
+            }
           },
         },
       },
