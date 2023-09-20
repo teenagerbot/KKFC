@@ -11,7 +11,7 @@ function moveCURSOR(direction = "forward", element_index = 0, array = []) {
             createOperation();
             INDEX = element_index;
         }
-    } else {
+    } else if (direction === "back") {
         INDEX = --element_index;
         if (array[INDEX] !== undefined) {
             readerJSON(array[INDEX], "prev");
@@ -21,6 +21,8 @@ function moveCURSOR(direction = "forward", element_index = 0, array = []) {
             notifier.show("Помилка", "Код помилки: 0x20030440", "", "../imgs/img/high_priority-48.png", 0);
             INDEX = element_index;
         }
+    } else if (direction === "render") {
+
     }
     document.querySelector("#__save_operation").classList.remove("saveText");
     return INDEX;

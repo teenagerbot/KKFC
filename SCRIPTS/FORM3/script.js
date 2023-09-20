@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const ExtraFS = require("fs-extra");
 const Rmtr = require("@electron/remote");
+const electron = require("electron");
 let y = 0;
 const LoaderX = new Loader();
 const FILEserver = new ReserveServer();
@@ -23,6 +24,7 @@ WorkerOperations.onmessage = (event) => {
     if (fs.existsSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso")) {
       if (OperationsLIST.length !== 0) {
         readerJSONStatic(OperationsLIST[0]);
+        buildMap(OperationsLIST);
       } else {
         LoaderX.Destroy();
       }
@@ -1207,32 +1209,18 @@ document.querySelectorAll(`.menu_item`).forEach((el) => {
 });
 document.querySelector('screen_menu').onclick = (t) => {
   if (t.target.className == 'menu_item') {
-    const oper = t.target.innerText;
-    localStorage.setItem(
-      `temp_pointer_object`,
-      Number(oper.replace(/Операція\s(\d+)/g, '$1'))
-    );
-    document.querySelector('h1').innerHTML = `Операція <d>${Number(
-      oper.replace(/Операція\s(\d+)/g, '$1')
-    )}</d>`;
-    readerJSON(
-      JSON.parse(
-        localStorage.getItem(
-          `temp_pointer_object_${Number(
-            oper.replace(/Операція\s(\d+)/g, '$1')
-          )}`
-        )
-      ),
-      'prev'
-    );
-    localStorage.removeItem('temp_pointer_object_0');
-    document.querySelector('.menu_item.current').classList.remove('current');
-    t.target.classList.add('current');
-    if (document.querySelector('h1').innerHTML == 'Операція <d>1</d>') {
-      document.querySelector('#__prev').style.pointerEvents = 'none';
-      document.querySelector('#__prev').style.opacity = '0.4';
+    const oper = t.target.getAttribute("item");
+    const OperName = oper.split("|")[0]
+    const OperCount = oper.split("|")[1]
+    for (let operation in OperationsLIST) {
+      if (OperationsLIST[operation]["назва операції"] === OperName && OperationsLIST[operation]["номер операції"] === OperCount) {
+        ELEMENT_index = Number(operation);
+        readerJSON(OperationsLIST[operation])
+        document.querySelector("h1 d").innerText = OperCount / 5;
+        break;
+      }
     }
-    highlight();
+    ELEMENT_index = OperationsLIST.indexOf()
   }
 };
 setInterval(() => {
@@ -1360,6 +1348,9 @@ document.querySelector("#__delete_operation").onclick = () => {
                 document.querySelector('#__save_operation').classList.remove('saveText');
                 this.parentElement.parentElement.remove();
                 document.querySelector('window_screen').style.cssText = '';
+                setTimeout(() => {
+                  location.reload()
+                }, 1000)
               }
             }
           },
