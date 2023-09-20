@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const ExtraFS = require("fs-extra");
+const Rmtr = require("@electron/remote");
 let y = 0;
 const LoaderX = new Loader();
 const FILEserver = new ReserveServer();
@@ -826,12 +827,6 @@ function readerJSONStatic(object) {
   document.querySelector("#__save_operation").classList.remove("saveText");
 }
 let contentOperations;
-// if (localStorage.getItem('temp_pointer_object_1')) {
-//   contentOperations = localStorage.getItem(`temp_pointer_object_1`);
-//   //readerJSONStatic(JSON.parse(contentOperations));
-// } else {
-//   LoaderX.Destroy();
-// }
 function check() {
   return (
     document.querySelector('#ceh').value &&
@@ -1341,4 +1336,9 @@ document.querySelector("#__prev").onclick = () => {
 }
 document.querySelector("#__save_operation").onclick = () => {
   OperationsLIST = ManagerSaveToOperations(OperationsLIST);
+}
+
+document.querySelector("#__delete_operation").onclick = () => {
+  OperationsLIST.splice(ELEMENT_index, 1)
+  console.log(OperationsLIST)
 }
