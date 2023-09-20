@@ -18,6 +18,7 @@
 .buttons {
     display: flex;
     justify-content: center;
+    column-gap: 20px;
 }
 .dialog_win p {
     font-size: 20px;

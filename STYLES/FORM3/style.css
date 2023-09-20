@@ -605,17 +605,7 @@ iframe {
      left: 50%;
      transform: translate(-50%);
    }
-button#__prev {
-  margin-right: 17px;
-}
 
-button#__next {
-  margin-right: 17px;
-}
-
-button#__save_operation {
-  margin-right: 17px;
-}
 button#__ADD {
   box-shadow: 0px 9px 0px 0px #59bd59, 0px -9px #59bd59, -6px 0px #59bd59, 6px 0px #59bd59;
 }

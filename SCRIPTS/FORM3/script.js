@@ -1339,6 +1339,32 @@ document.querySelector("#__save_operation").onclick = () => {
 }
 
 document.querySelector("#__delete_operation").onclick = () => {
-  OperationsLIST.splice(ELEMENT_index, 1)
-  console.log(OperationsLIST)
+  Dialog(
+    'Точно видаляти цю операцію? Дію неможливо буде скасувати!',
+    'Почекай',
+    [
+      {
+        button: {
+          text: 'Видаляти',
+          id: 'dely',
+          click: () => {
+            OperationsLIST.splice(ELEMENT_index, 1)
+            this.parentElement.parentElement.remove();
+            document.querySelector('window_screen').style.cssText = '';
+          },
+        },
+      },
+      {
+        button: {
+          text: 'Відмінити',
+          id: 'nodely',
+          click: () => {
+            this.parentElement.parentElement.remove();
+            document.querySelector('window_screen').style.cssText = '';
+          },
+        },
+      },
+    ],
+    false
+  );
 }
