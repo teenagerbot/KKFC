@@ -3,6 +3,7 @@ const path = require('path');
 const ExtraFS = require("fs-extra");
 const Rmtr = require("@electron/remote");
 const electron = require("electron");
+const {createTargets} = require("electron-builder");
 let y = 0;
 const LoaderX = new Loader();
 const FILEserver = new ReserveServer();
@@ -25,6 +26,7 @@ WorkerOperations.onmessage = (event) => {
       if (OperationsLIST.length !== 0) {
         readerJSONStatic(OperationsLIST[0]);
         buildMap(OperationsLIST);
+        document.querySelector(".menu_item")?.classList.add("current");
       } else {
         LoaderX.Destroy();
       }
@@ -1172,30 +1174,34 @@ document.querySelectorAll('screen_menu p').forEach((m) => {
 });
 document.querySelectorAll(`.menu_item`).forEach((el) => {
   if (
-    el.innerText ==
+    el.innerText ===
     'Операція ' + localStorage.getItem('temp_pointer_object')
   ) {
     el.classList.add('current');
   }
 });
 document.querySelector('screen_menu').onclick = (t) => {
-  if (t.target.className == 'menu_item') {
+  if (t.target.className === 'menu_item') {
+    const elem = t.target;
     const oper = t.target.getAttribute("item");
     const OperName = oper.split("|")[0]
     const OperCount = oper.split("|")[1]
     for (let operation in OperationsLIST) {
       if (OperationsLIST[operation]["назва операції"] === OperName && OperationsLIST[operation]["номер операції"] === OperCount) {
         ELEMENT_index = Number(operation);
-        console.log(ELEMENT_index)
         readerJSON(OperationsLIST[operation])
         document.querySelector("h1 d").innerText = OperCount / 5;
+        document.querySelector(".menu_item.current")?.classList.remove("current");
+        setTimeout(() => {
+          elem.classList.add("current")
+        }, 20)
         break;
       }
     }
   }
 };
 setInterval(() => {
-  if (document.querySelector('h1').innerHTML == 'Операція <d>1</d>') {
+  if (document.querySelector('h1').innerHTML === 'Операція <d>1</d>') {
     document.querySelector('#__prev').style.pointerEvents = 'none';
     document.querySelector('#__prev').style.opacity = '0.4';
   } else {
@@ -1341,3 +1347,5 @@ document.querySelector("#__delete_operation").onclick = () => {
     false
   );
 }
+nodrag()
+setDarkMode("form3")

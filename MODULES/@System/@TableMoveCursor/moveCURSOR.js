@@ -18,7 +18,7 @@ function moveCURSOR(direction = "forward", element_index = 0, array = []) {
             document.querySelector("h1 d").innerText = Number(document.querySelector("h1 d").innerText) - 1;
         } else {
             RemoteModuleR.dialog.showErrorBox("Error", "Відбувся збій в програмі: 0x23938020");
-            notifier.show("Помилка", "Код помилки: 0x20030440", "", "../imgs/img/high_priority-48.png", 0);
+            notifier.show("Помилка", "Код помилки: <error-code>0x20030440</error-code>", "", "../imgs/img/high_priority-48.png", 0);
             INDEX = element_index;
         }
     } else if (direction === "render") {

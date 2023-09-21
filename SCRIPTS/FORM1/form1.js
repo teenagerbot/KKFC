@@ -3,6 +3,7 @@ const path = require("path")
 const fs = require("fs")
 const remote = require("@electron/remote");
 const windows = remote.getCurrentWindow();
+setDarkMode("form1")
 setTimeout(() => {
   check();
 }, 400)
