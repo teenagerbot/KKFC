@@ -1301,6 +1301,9 @@ document.querySelector("#__prev").onclick = () => {
 }
 document.querySelector("#__save_operation").onclick = () => {
   OperationsLIST = ManagerSaveToOperations(OperationsLIST);
+  setTimeout(() => {
+    buildMap(OperationsLIST);
+  }, 20)
 }
 
 document.querySelector("#__delete_operation").onclick = () => {

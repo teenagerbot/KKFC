@@ -1,4 +1,5 @@
 function buildMap(arr_operations = []) {
+    document.querySelector("screen_menu").innerHTML = "<h3>Операції:</h3>";
     arr_operations.forEach(operation => {
         const elem = document.createElement("p");
         elem.className = "menu_item";
