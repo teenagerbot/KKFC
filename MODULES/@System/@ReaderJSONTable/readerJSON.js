@@ -1,4 +1,4 @@
-function readerJSON(object, napryam = 'next') {
+function readerJSON(object) {
     console.log(object);
     let cont = object;
     document.querySelector('#mor').value = cont['МОР'];

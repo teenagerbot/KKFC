@@ -1170,35 +1170,6 @@ document.querySelectorAll('screen_menu p').forEach((m) => {
     document.querySelector('screen_menu').classList.add('left');
   };
 });
-let operationsInMemory = Object.keys(localStorage);
-operationsInMemory.splice(operationsInMemory.indexOf('temp_pointer_object'), 1);
-const operationsInMemoryArray = [];
-operationsInMemory.forEach((key) => {
-  if (key.startsWith('temp_pointer_object')) {
-    operationsInMemoryArray.push(key);
-  }
-});
-operationsInMemoryArray.sort();
-operationsInMemoryArray.forEach((key) => {
-  const OOP = JSON.parse(localStorage.getItem(key))["form3_operations"];
-  const OOB = OOP[Object.keys(OOP)[0]];
-  if (OOB["назва операції"] != "" && OOB["верстат"] != "") {
-    const P = document.createElement('p');
-    P.className = 'menu_item';
-    P.setAttribute(
-      'item',
-      String(
-        Object.keys(JSON.parse(localStorage.getItem(key))['form3_operations'])[0]
-      )
-    );
-    P.innerText = Object.keys(
-      JSON.parse(localStorage.getItem(key))['form3_operations']
-    )[0];
-    document.querySelector('screen_menu').appendChild(P);
-  } else {
-    localStorage.removeItem(key);
-  }
-});
 document.querySelectorAll(`.menu_item`).forEach((el) => {
   if (
     el.innerText ==
@@ -1215,12 +1186,12 @@ document.querySelector('screen_menu').onclick = (t) => {
     for (let operation in OperationsLIST) {
       if (OperationsLIST[operation]["назва операції"] === OperName && OperationsLIST[operation]["номер операції"] === OperCount) {
         ELEMENT_index = Number(operation);
+        console.log(ELEMENT_index)
         readerJSON(OperationsLIST[operation])
         document.querySelector("h1 d").innerText = OperCount / 5;
         break;
       }
     }
-    ELEMENT_index = OperationsLIST.indexOf()
   }
 };
 setInterval(() => {
