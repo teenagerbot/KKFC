@@ -1,9 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const ExtraFS = require("fs-extra");
-const Rmtr = require("@electron/remote");
-const electron = require("electron");
-const {createTargets} = require("electron-builder");
 let y = 0;
 const LoaderX = new Loader();
 const FILEserver = new ReserveServer();
