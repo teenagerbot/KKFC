@@ -21,9 +21,30 @@ WorkerOperations.onmessage = (event) => {
     OperationsLIST = message.operations;
     if (fs.existsSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso")) {
       if (OperationsLIST.length !== 0) {
-        readerJSONStatic(OperationsLIST[0]);
-        buildMap(OperationsLIST);
-        document.querySelector(".menu_item")?.classList.add("current");
+        remote.dialog
+            .showMessageBox(windows, {
+              type: 'question',
+              title: 'Підтвердіть',
+              message: 'Ви вводили якісь данні на цій формі, видалити їх?',
+              buttons: ['Видалити', 'Не видаляти'],
+            })
+            .then((result) => {
+              if (result.response !== 0) {
+                readerJSONStatic(OperationsLIST[0]);
+                buildMap(OperationsLIST);
+                document.querySelector(".menu_item")?.classList.add("current");
+                LoaderX.Destroy();
+                return;
+              }
+              if (result.response === 0) {
+                OperationsLIST = [];
+                fs.writeFileSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso", "[]");
+                LoaderX.Destroy();
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
       } else {
         LoaderX.Destroy();
       }
@@ -922,48 +943,35 @@ document.querySelector('#__save').onclick = () => {
           // LINK SCRIPTS/MODULES/ERRORS.js#ERROR
           ERROR('Ви не заповнили жодної форми', 'Уупс');
           LoaderX.Destroy();
-        } else if (!keysInfo.includes('temp_pointer_object_1')) {
-          ERROR('Ви не створили жодного переходу у третій формі', 'Уупс');
-          LoaderX.Destroy();
         } else if (!keysInfo.includes('data_form1')) {
           ERROR('Ви не заповнили першу форму', 'Уупс');
           LoaderX.Destroy();
         } else if (!keysInfo.includes('__data_FORM2__')) {
           ERROR('Ви не заповнили другу форму', 'Уупс');
           LoaderX.Destroy();
+        } else if (!fs.existsSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso")) {
+          ERROR('Ви не одали жодної операції', 'Уупс');
+          LoaderX.Destroy();
         } else if (
-          keysInfo.includes('temp_pointer_object_1') &&
           keysInfo.includes('data_form1') &&
-          keysInfo.includes('__data_FORM2__')
+          keysInfo.includes('__data_FORM2__') && fs.existsSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso")
         ) {
-          const RESULT = {};
-          keysInfo.forEach((key) => {
-            if (key.startsWith('temp_pointer_object_')) {
-              let obj = JSON.parse(localStorage.getItem(key))[
-                'form3_operations'
-              ];
-              if (obj[Object.keys(obj)[0]]["назва операції"] != "" && obj[Object.keys(obj)[0]]["верстат"] != "") {
-                RESULT[Object.keys(obj)[0]] = obj[Object.keys(obj)[0]];
-              }
-            }
-          });
-          const ResObj = {
-            form1_info: {},
-            form2_detail: [],
-            form3_operations: {},
-          };
-          ResObj['form1_info'] = JSON.parse(localStorage.getItem('data_form1'));
-          ResObj['form2_detail'] = JSON.parse(
-            localStorage.getItem('__data_FORM2__')
-          );
-          ResObj['form3_operations'] = RESULT;
-          const obs = JSON.parse(
+          let RESULT = {};
+          const ResultOpers = JSON.parse(
             fs.readFileSync('resources/DataBase/RESULT.json')
           );
-          obs[localStorage.getItem('__CURRENT_PERSON__')] = ResObj;
+          OperationsLIST.forEach(operation => {
+            RESULT["Операція "+Number(operation['номер операції'])/5] = operation;
+          })
+          console.log(RESULT)
+          ResultOpers[localStorage.getItem('__CURRENT_PERSON__')] = {
+            "form1_info": JSON.parse(localStorage.getItem('data_form1')),
+            "form2_detail": JSON.parse(localStorage.getItem('__data_FORM2__')),
+            "form3_operations": RESULT
+          };
           fs.writeFile(
             'resources/DataBase/RESULT.json',
-            JSON.stringify(obs, null, 2),
+            JSON.stringify(ResultOpers, null, 2),
             (err) => {
               if (err) {
                 ERROR(err, 'Щось сталося при збереженні');
@@ -974,6 +982,7 @@ document.querySelector('#__save').onclick = () => {
                 SUCCESS(String(MESSAGE), 'YES');
                 localStorage.clear();
                 LoaderX.Destroy();
+                fs.writeFileSync(PATH_TO_RESERVE_COPY + "\\WindowsMechanic\\.-.iso", "[]");
                 setTimeout(() => {
                   windows.close();
                 }, 1000);
@@ -1222,33 +1231,6 @@ window.onkeydown = function (y) {
     document.querySelector('#__cancel')?.click();
   }
 };
-if (localStorage.getItem('temp_pointer_object_1')) {
-  remote.dialog
-    .showMessageBox(windows, {
-      type: 'question',
-      title: 'Підтвердіть',
-      message: 'Ви вводили якісь данні на цій формі, видалити їх?',
-      buttons: ['Видалити', 'Не видаляти'],
-    })
-    .then((result) => {
-      if (result.response !== 0) {
-        return;
-      }
-      if (result.response === 0) {
-        let keysInfo = Object.keys(localStorage);
-        keysInfo.splice(keysInfo.indexOf('temp_pointer_object'), 1);
-        keysInfo.forEach((key) => {
-          if (key.startsWith('temp_pointer_object_')) {
-            localStorage.removeItem(key);
-          }
-        });
-        location.reload();
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
 document.querySelector('#opers').onclick = () => {
   let p = 0;
   document.querySelectorAll('div.table table tr').forEach((tr) => {
