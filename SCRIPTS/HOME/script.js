@@ -137,7 +137,7 @@ document.querySelector('#tables').onclick = () => {
       nodeIntegration: true,
       enableRemoteModule: true,
       webviewTag: true,
-      devTools: true,
+      devTools: false,
     },
     icon: path.join(__dirname, '../', 'icon.ico'),
   });

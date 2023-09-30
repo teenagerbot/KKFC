@@ -485,3 +485,37 @@ function readerFromTable(table_name) {
         datalist.appendChild(option);
     })
 }
+// document.addEventListener('paste', function(event) {
+//     event.preventDefault(); // Предотвращаем стандартное вставление
+//
+//     const clipboardData = event.clipboardData || window.clipboardData;
+//     const items = clipboardData.items;
+//     for (let i = 0; i < items.length; i++) {
+//         const item = items[i];
+//         const type = item.type;
+//
+//         // if (type.indexOf('image') !== -1) {
+//         //     // Если тип элемента - изображение, вставляем его в div
+//         //     const file = item.getAsFile();
+//         //     const reader = new FileReader();
+//         //
+//         //     reader.onload = function(events) {
+//         //         const imgElement = document.createElement('img');
+//         //         imgElement.src = events.target.result;
+//         //         event.target.appendChild(imgElement);
+//         //     };
+//         //
+//         //     reader.readAsDataURL(file);
+//         // }
+//         if (type.indexOf('text') !== -1) {
+//             const text = clipboardData.getData('text/plain');
+//             const textNode = document.createTextNode(text);
+//             event.target.appendChild(textNode);
+//         }
+//     }
+// });
+document.addEventListener("paste", function(e) {
+    e.preventDefault();
+    var text = e.clipboardData.getData("text/plain");
+    document.execCommand("insertHTML", false, text);
+});

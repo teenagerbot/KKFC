@@ -25,7 +25,7 @@ document.querySelector("#__next").onclick = () => {
         nodeIntegration: true,
         enableRemoteModule: true,
         webviewTag: true,
-        devTools: true
+        devTools: false
       },
       icon: path.join(__dirname, "../", 'icon.ico')
     })
