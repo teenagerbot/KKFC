@@ -1,3 +1,6 @@
+/*
+* @function ClearFields - функція очищення полей
+* */
 function ClearFields(array = []) {
     array.forEach(field => {
         if (document.querySelector(field) && document.querySelector(field).tagName === "input".toUpperCase() && document.querySelector(field).type !== "checkbox") {

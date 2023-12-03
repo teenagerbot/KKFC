@@ -1,7 +1,7 @@
 {
-  "name": "mechanic",
-  "productName": "Технологічна документація",
-  "description": "Кафедра технології машинобудування",
+  "name": "TechRM Pro",
+  "productName": "TechRM Pro",
+  "description": "TechRM Pro - ПЗ для розробки маршрутних карт",
   "keywords": [
     "ХНУ",
     "Машинобудування",
@@ -30,7 +30,7 @@
       "perMachine": false,
       "allowElevation": true,
       "allowToChangeInstallationDirectory": true,
-      "uninstallDisplayName": "Технологічна документація",
+      "uninstallDisplayName": "TechRM Pro",
       "deleteAppDataOnUninstall": true,
       "createDesktopShortcut": "always",
       "createStartMenuShortcut": true,
