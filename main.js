@@ -21,7 +21,7 @@ function createWindow() {
       enableRemoteModule: true,
       preload: path.join(__dirname, 'preload.js'),
       webviewTag: true,
-      devTools: false,
+      //devTools: false,
     },
     icon: path.join(__dirname, 'icon.ico'),
   });

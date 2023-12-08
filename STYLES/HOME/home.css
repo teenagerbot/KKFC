@@ -1,6 +1,38 @@
 iframe {
   height: 100%;
 }
+div#donate-button-container, form {
+  position: absolute;
+  display: none;
+}
+.donate-button {
+  width: 173px;
+  height: 49px;
+  border-radius: 9px;
+  border: 1px solid #000;
+  background: #92e992;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: .2s linear;
+}
+.donate-button:active {
+  transform: scale(0.5);
+}
+.donate-button span {
+  color: #0012ebc9;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  top: 0px;
+  font-size: 23px;
+  pointer-events: none;
+}
 
 img.stat {
   width: 30px;
