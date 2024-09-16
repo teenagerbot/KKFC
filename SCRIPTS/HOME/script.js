@@ -7,7 +7,7 @@ let y;
 const windows = remote.getCurrentWindow();
 const Deleter = new Trasher(windows, remote, fs)
 AdminChecker()
-connectToRemoteServer('https://server.gooq.repl.co', (connection) => {
+connectToRemoteServer('https://605e536f-40c9-42a6-b0a8-f5bec0e97c2c-00-27euwlhna9ejn.janeway.replit.dev', (connection) => {
   if (connection.connection == true) {
     document.querySelector('img.stat').src = '../imgs/online.png';
     document.querySelector('img.stat').classList.remove('offline');
